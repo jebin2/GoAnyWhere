@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/travelactivity">
+
+    <TextView
+        android:text="From"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="70dp"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:text="To"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="120dp"
+        android:id="@+id/textView5" />
+
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="start"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="160dp"
+        android:ems="10"
+        android:id="@+id/starteditText"/>
+
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="stop"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="160dp"
+        android:ems="10"
+        android:id="@+id/stopeditText" />
+
+    <TextView
+        android:text="Date"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="170dp"
+        android:id="@+id/textView13" />
+
+    <EditText
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="160dp"
+        android:inputType="number"
+        android:maxLength="2"
+        android:hint="DD"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:ems="10"
+        android:id="@+id/ddeditText" />
+
+    <EditText
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="200dp"
+        android:inputType="number"
+        android:maxLength="2"
+        android:hint="MM"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:ems="10"
+        android:id="@+id/mmeditText" />
+
+    <EditText
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="240dp"
+        android:inputType="number"
+        android:maxLength="4"
+        android:hint="yyyy"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:ems="10"
+        android:id="@+id/yyyyeditText" />
+
+    <Button
+        android:text="Search"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="270dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/searchbutton" />
+
+
+</RelativeLayout>
