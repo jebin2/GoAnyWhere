@@ -27,6 +27,9 @@
         <activity
             android:name=".Buses"
             android:label="bus" />
+        <activity
+            android:name=".bussdetails"
+            android:label="bus" />
     </application>
 
 </manifest>

@@ -94,7 +94,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
 
             try {
                 Log.i("jebin", "hjgj");
-                String link = "http://" + getString(R.string.website) + "/signup.php";
+                String link = "http://" + getString(R.string.website) + "/GoAnyWhere/signup.php";
                 String data = "name=" + URLEncoder.encode(a.get(0), "UTF-8") + "&username=" + URLEncoder.encode(a.get(1), "UTF-8") + "&password=" + URLEncoder.encode(a.get(2), "UTF-8") + "&gender=" + URLEncoder.encode(a.get(3), "UTF-8") + "&phonenumber=" + URLEncoder.encode(a.get(4), "UTF-8") + "&dateofbirth=" + URLEncoder.encode(a.get(5), "UTF-8") + "&mailid=" + URLEncoder.encode(a.get(6), "UTF-8");
                 URL url = new URL(link);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

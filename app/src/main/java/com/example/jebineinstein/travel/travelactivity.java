@@ -20,6 +20,9 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -37,7 +40,7 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
     Button search;
     EditText from,to,dd,mm,yyyy;
     String sfrom,sto,sdd,smm,syyyy;
-    ArrayList<String> b = new ArrayList<>();
+    public static ArrayList<String> b = new ArrayList<>();
     int date,day,year;
 
     @Override
@@ -61,17 +64,19 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(travelactivity.this,"Fill All The Field",Toast.LENGTH_LONG).show();
         }
         else{
-            new Buses(travelactivity.this).execute();
+            new Buses1(travelactivity.this).execute();
+//                    startActivity(new Intent(travelactivity.this, Buses.class));
+//                    startActivity(new Intent(travelactivity.this, Buses.class));
         }
             break;
         }
     }
 
-    class Buses extends AsyncTask<Void, Void, String> {
+    class Buses1 extends AsyncTask<Void, Void, String> {
         Context context;
         ProgressDialog dialog = null;
 
-        Buses(Context c) {
+        Buses1(Context c) {
             context = c;
         }
 
@@ -94,7 +99,7 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
             StringBuilder sb = new StringBuilder();
 
             try {
-                String link = "http://" + getString(R.string.website) + "/buses.php";
+                String link = "http://" + getString(R.string.website) + "/GoAnyWhere/buses.php";
                 String data = "from=" + URLEncoder.encode(sfrom, "UTF-8") + "&to=" + URLEncoder.encode(sto, "UTF-8") + "&date=" + URLEncoder.encode(sdd, "UTF-8") + "&day=" + URLEncoder.encode(smm, "UTF-8") + "&year=" + URLEncoder.encode(syyyy, "UTF-8");
                 URL url = new URL(link);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -106,7 +111,7 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
                 String line;
                 while ((line = reader.readLine()) != null) {
                     sb.append(line);
-                    Log.i("jebin", line);
+                    Log.i("jebin", String.valueOf(line.charAt(3)));
                 }
                 httpURLConnection.disconnect();
             } catch (Exception e) {
@@ -120,12 +125,64 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            if (result.equals("ok")) {
+//            String in = null;
+            try {
+                JSONObject jsonObj = new JSONObject(result);
+
+                // Getting JSON Array node
+                JSONArray details = jsonObj.getJSONArray("details");
+                for (int i = 0; i < details.length(); i++) {
+                    JSONObject c = details.getJSONObject(i);
+
+                    String id = c.getString("busid");
+                    String name = c.getString("busname");
+                    String email = c.getString("dtime");
+                    String address = c.getString("atime");
+                    String gender = c.getString("boardingpoint");
+                    String address1 = c.getString("from");
+                    String gender1 = c.getString("to");
+
+                    Log.i("jebin", id+name+email+address+gender+address1+gender1);
+
+                    b.add(id);
+                    b.add(name);
+                    b.add(email);
+                    b.add(address);
+                    b.add(gender);
+                    b.add(address1);
+                    b.add(gender1);
+
+
+
+//                    // Phone node is JSON Object
+//                    JSONObject phone = c.getJSONObject("phone");
+//                    String mobile = phone.getString("mobile");
+//                    String home = phone.getString("home");
+//                    String office = phone.getString("office");
+
+                    // tmp hash map for single contact
+//                    HashMap<String, String> contact = new HashMap<>();
+//
+//                    // adding each child node to HashMap key => value
+//                    contact.put("id", id);
+//                    contact.put("name", name);
+//                    contact.put("email", email);
+//                    contact.put("mobile", mobile);
+
+                    // adding contact to contact list
+//                    contactList.add(contact);
+                }
+            }catch (Exception e){
+
+            }
+
+            if (result.equals("")) {
+                Snackbar.make(findViewById(R.id.travelactivity), "Please try again no bus", Snackbar.LENGTH_LONG).show();
+//                startActivity(new Intent(travelactivity.this, Buses.class));
+//                finish();
+            } else {
                 startActivity(new Intent(travelactivity.this, Buses.class));
                 finish();
-            } else {
-                Snackbar.make(findViewById(R.id.travelactivity), "Please try again", Snackbar.LENGTH_LONG).show();
-
             }
 
             dialog.dismiss();

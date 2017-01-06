@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             StringBuilder sb = new StringBuilder();
 
             try {
-                String link = "http://" + getString(R.string.website) + "/login.php";
+                String link = "http://" + getString(R.string.website) + "/GoAnyWhere/login.php";
                 String data = "username=" + URLEncoder.encode(a.get(0), "UTF-8") + "&password=" + URLEncoder.encode(a.get(1), "UTF-8");
                 URL url = new URL(link);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
