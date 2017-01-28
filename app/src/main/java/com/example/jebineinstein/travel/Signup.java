@@ -38,6 +38,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
+        sp = getSharedPreferences("GoAnyWhere", Context.MODE_PRIVATE);
         name=(EditText)findViewById(R.id.editText3);
         username=(EditText)findViewById(R.id.editText4);
         password=(EditText)findViewById(R.id.editText5);
@@ -56,6 +57,10 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(Signup.this,"Fill All The Field",Toast.LENGTH_LONG).show();
         }
         else{
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("Name", name.getText().toString());
+            editor.putString("Email", email.getText().toString());
+            editor.apply();
             new SignUp(Signup.this).execute();
         }
     }

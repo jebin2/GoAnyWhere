@@ -30,6 +30,8 @@
         <activity
             android:name=".bussdetails"
             android:label="bus" />
+        <activity android:name=".Bookdetails"
+            android:label="Booking Details" />
     </application>
 
 </manifest>

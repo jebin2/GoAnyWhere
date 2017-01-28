@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="From"
+        android:text="Name"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         android:id="@+id/textView15" />
 
     <TextView
-        android:text="To"
+        android:text="Email"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:id="@+id/textView16" />
 
     <TextView
-        android:text="Borading Point"
+        android:text="Mobile no"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:id="@+id/textView17" />
 
     <TextView
-        android:text="Departure Time"
+        android:text="Boarding Point"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:id="@+id/textView18" />
 
     <TextView
-        android:text="Arrival Time"
+        android:text="Depature Time"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         android:id="@+id/textView21" />
 
     <TextView
-        android:text="Seat Avail"
+        android:text="Seat no"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Email"
         android:ems="10"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="100dp"
@@ -102,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Mobile Number"
         android:ems="10"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="150dp"
@@ -113,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Boarding Point"
         android:ems="10"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="200dp"
@@ -124,7 +124,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Depature"
         android:ems="10"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="250dp"
@@ -135,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Bus Name"
         android:ems="10"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="300dp"
@@ -146,7 +146,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Bus Id"
         android:ems="10"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="350dp"
@@ -157,16 +157,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:hint="Seat NUmber"
         android:ems="10"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="400dp"
         android:id="@+id/editText18" />
 
     <Button
-        android:text="Book Now"
+        android:text="Pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="450dp"
         android:id="@+id/button" />
+
 </RelativeLayout>

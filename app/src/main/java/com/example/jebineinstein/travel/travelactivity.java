@@ -30,6 +30,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by jebineinstein on 17/12/16.
@@ -42,10 +43,12 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
     String sfrom,sto,sdd,smm,syyyy;
     public static ArrayList<String> b = new ArrayList<>();
     int date,day,year;
+    Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        calendar = Calendar.getInstance();
         setContentView(R.layout.fragment_main);
         search=(Button)findViewById(R.id.searchbutton);
         from=(EditText)findViewById(R.id.starteditText);
@@ -53,6 +56,7 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
         dd=(EditText)findViewById(R.id.ddeditText);
         mm=(EditText)findViewById(R.id.mmeditText);
         yyyy=(EditText)findViewById(R.id.yyyyeditText);
+        yyyy.setText(String.valueOf(calendar.get(Calendar.YEAR)));
         search.setOnClickListener(this);
     }
 
@@ -60,8 +64,8 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.searchbutton:
-                if(from.getText().toString().equals("") &&to.getText().toString().equals("") &&dd.getText().toString().equals("") &&mm.getText().toString().equals("") &&yyyy.getText().toString().equals("")){
-                Toast.makeText(travelactivity.this,"Fill All The Field",Toast.LENGTH_LONG).show();
+                if(from.getText().toString().equals("") ||to.getText().toString().equals("") ||dd.getText().toString().equals("") ||mm.getText().toString().equals("") ||yyyy.getText().toString().equals("")|| Integer.parseInt(mm.getText().toString())>12||Integer.parseInt(mm.getText().toString())==0||Integer.parseInt(dd.getText().toString())>31||Integer.parseInt(dd.getText().toString())==0||yyyy.getText().toString().equals((Calendar.YEAR))){
+                Toast.makeText(travelactivity.this,"Fill All The Field Correctly",Toast.LENGTH_LONG).show();
         }
         else{
             new Buses1(travelactivity.this).execute();
@@ -131,6 +135,8 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
 
                 // Getting JSON Array node
                 JSONArray details = jsonObj.getJSONArray("details");
+                Log.i("jebin", String.valueOf(details)+"dsdsadfsdf");
+                b.clear();
                 for (int i = 0; i < details.length(); i++) {
                     JSONObject c = details.getJSONObject(i);
 
@@ -176,13 +182,15 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
 
             }
 
-            if (result.equals("")) {
+            if (b.size()==0) {
+                Log.i("jebin", String.valueOf(result)+"ds1232dsadfsdf");
                 Snackbar.make(findViewById(R.id.travelactivity), "Please try again no bus", Snackbar.LENGTH_LONG).show();
 //                startActivity(new Intent(travelactivity.this, Buses.class));
 //                finish();
             } else {
+                Log.i("jebin", String.valueOf(result)+"dsdsadfsdf");
                 startActivity(new Intent(travelactivity.this, Buses.class));
-                finish();
+//                finish();
             }
 
             dialog.dismiss();
