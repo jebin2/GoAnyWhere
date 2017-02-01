@@ -128,7 +128,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
 
             if (result.equals("ok")) {
                 Snackbar.make(findViewById(R.id.signlayout), "Successfully Registried", Snackbar.LENGTH_LONG).show();
-                startActivity(new Intent(Signup.this, travelactivity.class));
+                startActivity(new Intent(Signup.this, SearchBuses.class));
                 finish();
             } else {
                 Snackbar.make(findViewById(R.id.signlayout), result, Snackbar.LENGTH_LONG).show();

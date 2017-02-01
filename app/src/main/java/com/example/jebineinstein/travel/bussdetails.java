@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class bussdetails extends AppCompatActivity implements View.OnClickListener {
 
-    //    travelactivity ta = new travelactivity();
-    ArrayList<String> b1 = travelactivity.b;
-    int i2 = Buses.i1,i=0;
+    //    SearchBuses ta = new SearchBuses();
+    ArrayList<String> b1 = SearchBuses.b;
+    int i2 = BusesList.i1,i=0;
     EditText busid,busname,from,to,dtime,atime,bpoint;
     Button button;
 
@@ -36,7 +36,7 @@ public class bussdetails extends AppCompatActivity implements View.OnClickListen
         button.setOnClickListener(this);
 
         for(int j=0;j<i2;j++){
-            i=i+7;
+            i=i+10;
         }
 
         from.setText(b1.get(5+i));

@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 /**
  * Created by jebineinstein on 28/1/17.
@@ -18,8 +17,8 @@ import java.util.StringTokenizer;
 public class Bookdetails extends AppCompatActivity implements View.OnClickListener{
 
     SharedPreferences sp;
-    ArrayList<String> bb1 = travelactivity.b;
-    int ii2 = Buses.i1,ii=0;
+    ArrayList<String> bb1 = SearchBuses.b;
+    int ii2 = BusesList.i1,ii=0;
     EditText busid,busname,name,email,mobileno,dtime,bpoint,seatno;
     Button button;
 
@@ -44,7 +43,7 @@ public class Bookdetails extends AppCompatActivity implements View.OnClickListen
         seatno.setText(String.valueOf(5));
 
         for(int j=0;j<ii2;j++){
-            ii=ii+7;
+            ii=ii+10;
         }
 
 //        from.setText(bb1.get(5+ii));

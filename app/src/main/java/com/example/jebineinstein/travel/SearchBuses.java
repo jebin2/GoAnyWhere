@@ -1,22 +1,15 @@
 package com.example.jebineinstein.travel;
 
-import android.app.Dialog;
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,7 +29,7 @@ import java.util.Calendar;
  * Created by jebineinstein on 17/12/16.
  */
 
-public class travelactivity extends AppCompatActivity implements View.OnClickListener{
+public class SearchBuses extends AppCompatActivity implements View.OnClickListener{
 
     Button search;
     EditText from,to,dd,mm,yyyy;
@@ -49,7 +42,7 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         calendar = Calendar.getInstance();
-        setContentView(R.layout.fragment_main);
+        setContentView(R.layout.searchbuses);
         search=(Button)findViewById(R.id.searchbutton);
         from=(EditText)findViewById(R.id.starteditText);
         to=(EditText)findViewById(R.id.stopeditText);
@@ -65,12 +58,10 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()){
             case R.id.searchbutton:
                 if(from.getText().toString().equals("") ||to.getText().toString().equals("") ||dd.getText().toString().equals("") ||mm.getText().toString().equals("") ||yyyy.getText().toString().equals("")|| Integer.parseInt(mm.getText().toString())>12||Integer.parseInt(mm.getText().toString())==0||Integer.parseInt(dd.getText().toString())>31||Integer.parseInt(dd.getText().toString())==0||yyyy.getText().toString().equals((Calendar.YEAR))){
-                Toast.makeText(travelactivity.this,"Fill All The Field Correctly",Toast.LENGTH_LONG).show();
+                Toast.makeText(SearchBuses.this,"Fill All The Field Correctly",Toast.LENGTH_LONG).show();
         }
         else{
-            new Buses1(travelactivity.this).execute();
-//                    startActivity(new Intent(travelactivity.this, Buses.class));
-//                    startActivity(new Intent(travelactivity.this, Buses.class));
+            new Buses1(SearchBuses.this).execute();
         }
             break;
         }
@@ -93,7 +84,7 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
             smm=mm.getText().toString();
             syyyy=yyyy.getText().toString();
             dialog = new ProgressDialog(context);
-            dialog.setMessage("Waiting for verification sms");
+            dialog.setMessage("Waiting for verif123ication sms");
             dialog.show();
             dialog.setCanceledOnTouchOutside(false);
         }
@@ -103,6 +94,7 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
             StringBuilder sb = new StringBuilder();
 
             try {
+                Log.i("jebin", "try");
                 String link = "http://" + getString(R.string.website) + "/GoAnyWhere/buses.php";
                 String data = "from=" + URLEncoder.encode(sfrom, "UTF-8") + "&to=" + URLEncoder.encode(sto, "UTF-8") + "&date=" + URLEncoder.encode(sdd, "UTF-8") + "&day=" + URLEncoder.encode(smm, "UTF-8") + "&year=" + URLEncoder.encode(syyyy, "UTF-8");
                 URL url = new URL(link);
@@ -115,7 +107,7 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
                 String line;
                 while ((line = reader.readLine()) != null) {
                     sb.append(line);
-                    Log.i("jebin", String.valueOf(line.charAt(3)));
+                    Log.i("jebin", String.valueOf(line));
                 }
                 httpURLConnection.disconnect();
             } catch (Exception e) {
@@ -128,14 +120,11 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
-//            String in = null;
             try {
                 JSONObject jsonObj = new JSONObject(result);
 
                 // Getting JSON Array node
                 JSONArray details = jsonObj.getJSONArray("details");
-                Log.i("jebin", String.valueOf(details)+"dsdsadfsdf");
                 b.clear();
                 for (int i = 0; i < details.length(); i++) {
                     JSONObject c = details.getJSONObject(i);
@@ -147,8 +136,9 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
                     String gender = c.getString("boardingpoint");
                     String address1 = c.getString("from");
                     String gender1 = c.getString("to");
-
-                    Log.i("jebin", id+name+email+address+gender+address1+gender1);
+                    String cost1 = c.getString("cost");
+                    String date1 = c.getString("date");
+                    String seat = c.getString("seat");
 
                     b.add(id);
                     b.add(name);
@@ -157,6 +147,9 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
                     b.add(gender);
                     b.add(address1);
                     b.add(gender1);
+                    b.add(cost1);
+                    b.add(date1);
+                    b.add(seat);
 
 
 
@@ -183,14 +176,12 @@ public class travelactivity extends AppCompatActivity implements View.OnClickLis
             }
 
             if (b.size()==0) {
-                Log.i("jebin", String.valueOf(result)+"ds1232dsadfsdf");
                 Snackbar.make(findViewById(R.id.travelactivity), "Please try again no bus", Snackbar.LENGTH_LONG).show();
-//                startActivity(new Intent(travelactivity.this, Buses.class));
-//                finish();
-            } else {
-                Log.i("jebin", String.valueOf(result)+"dsdsadfsdf");
-                startActivity(new Intent(travelactivity.this, Buses.class));
-//                finish();
+            } else if(result.equals("nobuses")) {
+                Snackbar.make(findViewById(R.id.travelactivity), "Please try again no bus", Snackbar.LENGTH_LONG).show();
+            }
+            else {
+                startActivity(new Intent(SearchBuses.this, BusesList.class));
             }
 
             dialog.dismiss();

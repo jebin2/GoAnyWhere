@@ -12,21 +12,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class Login extends AppCompatActivity implements View.OnClickListener {
 
     Button Login ,Signup;
     EditText username = null,password = null;
@@ -37,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
         Login=(Button)findViewById(R.id.button1);
         Signup=(Button)findViewById(R.id.button2);
         Login.setOnClickListener(this);
@@ -50,19 +45,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button1:
-                new Login(MainActivity.this).execute();
+                new LoginTask(com.example.jebineinstein.travel.Login.this).execute();
                 break;
             case R.id.button2:
-                startActivity(new Intent(MainActivity.this,Signup.class));
+                startActivity(new Intent(com.example.jebineinstein.travel.Login.this,Signup.class));
                 break;
         }
     }
 
-    class Login extends AsyncTask<Void, Void, String> {
+    class LoginTask extends AsyncTask<Void, Void, String> {
         Context context;
         ProgressDialog dialog = null;
 
-        Login(Context c) {
+        LoginTask(Context c) {
             context = c;
 
         }
@@ -115,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             super.onPostExecute(result);
 
             if (result.equals("ok")) {
-                startActivity(new Intent(MainActivity.this, travelactivity.class));
+                startActivity(new Intent(com.example.jebineinstein.travel.Login.this, SearchBuses.class));
                 finish();
             } else {
                 Snackbar.make(findViewById(R.id.activity_main), result, Snackbar.LENGTH_LONG).show();
