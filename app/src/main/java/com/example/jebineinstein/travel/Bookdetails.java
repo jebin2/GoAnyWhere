@@ -1,6 +1,7 @@
 package com.example.jebineinstein.travel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +59,6 @@ public class Bookdetails extends AppCompatActivity implements View.OnClickListen
     }
 
     public void onClick(View view) {
-
+        startActivity(new Intent(Bookdetails.this, Payment.class));
     }
 }

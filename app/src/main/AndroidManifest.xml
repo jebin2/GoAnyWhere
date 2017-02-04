@@ -32,6 +32,8 @@
             android:label="bus" />
         <activity android:name=".Bookdetails"
             android:label="Booking Details" />
+        <activity android:name=".Payment"
+            android:label="Payment Details" />
     </application>
 
 </manifest>

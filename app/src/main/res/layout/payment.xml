@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/pay"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+    <TextView
+        android:text="Card Number"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/textView151" />
+
+    <TextView
+        android:text="CVV"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:id="@+id/textView161" />
+
+    <TextView
+        android:text="Expiray Date"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="150dp"
+        android:id="@+id/textView171" />
+
+    <TextView
+        android:text="Pin"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
+        android:id="@+id/textView181" />
+
+    <TextView
+        android:text="Amount"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="250dp"
+        android:id="@+id/textView191" />
+
+    <EditText
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:ems="10"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/editText111" />
+
+    <EditText
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:ems="10"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="100dp"
+        android:id="@+id/editText121" />
+
+    <EditText
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:ems="10"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="150dp"
+        android:id="@+id/editText131" />
+
+    <EditText
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:ems="10"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="200dp"
+        android:id="@+id/editText141" />
+
+    <TextView
+        android:text="cost"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="250dp"
+        android:id="@+id/textView201" />
+
+    <Button
+        android:text="Pay Now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="450dp"
+        android:id="@+id/paynow" />
+</RelativeLayout>
